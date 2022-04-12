@@ -31,6 +31,7 @@ class AuthController extends Controller
         $token = $user->createToken('token')->plainTextToken;
 
         $response = [
+            'message' => 'User Berhasil Dibuat',
             'user' => $user,
             'token' => $token,
         ];
@@ -51,12 +52,13 @@ class AuthController extends Controller
         //check password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
-                'message' => 'Bad creds'
+                'message' => 'Email atau Password Salah'
             ], 401);
         }
         $token = $user->createToken('token')->plainTextToken;
 
         $response = [
+            'message' => 'Login User Berhasil',
             'user' => $user,
             'token' => $token,
         ];
@@ -77,12 +79,13 @@ class AuthController extends Controller
         //check password
         if (!$admin || !Hash::check($fields['password'], $admin->password)) {
             return response([
-                'message' => 'Bad creds'
+                'message' => 'Email atau Password Salah'
             ], 401);
         }
         $token = $admin->createToken('token')->plainTextToken;
 
         $response = [
+            'message' => 'Login Admin Berhasil',
             'admin' => $admin,
             'token' => $token,
         ];
