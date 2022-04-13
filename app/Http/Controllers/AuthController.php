@@ -26,9 +26,11 @@ class AuthController extends Controller
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
+            'age' => $fields['age'],
+            'location' => $fields['location'],
         ]);
 
-        $token = $user->createToken('token')->plainTextToken;
+        $token = $user->createToken('token', ['user'])->plainTextToken;
 
         $response = [
             'message' => 'User Berhasil Dibuat',
@@ -55,14 +57,14 @@ class AuthController extends Controller
                 'message' => 'Email atau Password Salah'
             ], 401);
         }
-        $token = $user->createToken('token')->plainTextToken;
+        $token = $user->createToken('token', ['user'])->plainTextToken;
 
         $response = [
             'message' => 'Login User Berhasil',
             'user' => $user,
             'token' => $token,
         ];
-        return response($response, 201);
+        return response($response, 200);
     }
 
     public function loginAdmin(Request $request)
@@ -82,13 +84,13 @@ class AuthController extends Controller
                 'message' => 'Email atau Password Salah'
             ], 401);
         }
-        $token = $admin->createToken('token')->plainTextToken;
+        $token = $admin->createToken('token', ['admin'])->plainTextToken;
 
         $response = [
             'message' => 'Login Admin Berhasil',
             'admin' => $admin,
             'token' => $token,
         ];
-        return response($response, 201);
+        return response($response, 200);
     }
 }
