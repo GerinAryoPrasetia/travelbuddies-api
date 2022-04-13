@@ -22,4 +22,8 @@ class Destination extends Model
     protected $casts = [
         'facilities' => 'array',
     ];
+
+    public function users()
+    {
+    }
 }
