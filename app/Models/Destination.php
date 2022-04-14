@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     use HasFactory;
-
+    protected $table = 'destinations';
     protected $fillable = [
         'destination_name',
         'description',
@@ -19,11 +19,8 @@ class Destination extends Model
         'image',
     ];
 
-    protected $casts = [
-        'facilities' => 'array',
-    ];
-
-    public function users()
-    {
-    }
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class);
+    // }
 }

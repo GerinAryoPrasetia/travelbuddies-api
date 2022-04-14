@@ -21,7 +21,7 @@ return new class extends Migration
             $table->longText('address');
             $table->float('price');
             $table->json('facilities');
-            $table->text('image')->default('no-image.jpeg');
+            $table->text('image');
             $table->timestamps();
         });
     }

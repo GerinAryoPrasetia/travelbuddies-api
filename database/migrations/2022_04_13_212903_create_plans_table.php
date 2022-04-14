@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('destination_name');
+            $table->date('schedule');
+            $table->string('people');
+            $table->string('items');
+            $table->string('transportation');
             $table->timestamps();
         });
     }

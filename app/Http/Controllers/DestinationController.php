@@ -22,8 +22,11 @@ class DestinationController extends Controller
             'address' => 'required',
             'price' => 'required',
             'facilities' => 'required',
-            'image' => 'nullable',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $image = $request->file('image');
+        $image->storeAs('public/images', $image->hashName());
 
         $destination = Destination::create([
             'destination_name' => $fields['destination_name'],
@@ -32,7 +35,7 @@ class DestinationController extends Controller
             'address' => $fields['address'],
             'price' => $fields['price'],
             'facilities' => $fields['facilities'],
-            'image' => $fields['image'],
+            'image' => $image->hashName(),
         ]);
 
         $response = [
@@ -67,4 +70,9 @@ class DestinationController extends Controller
     {
         return Destination::where('destination_name', 'like', '%' . $name . '%')->get();
     }
+
+    // public function destinationList($userid)
+    // {
+    //     $destination_list = Destination::where('userid')
+    // }
 }
