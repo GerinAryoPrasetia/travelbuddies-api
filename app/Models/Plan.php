@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Plan extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'destination_name',
+        'schedule',
+        'people',
+        'items',
+        'transportation',
+    ];
+
+    protected $table = 'plans';
 }

@@ -33,6 +33,7 @@ class AuthController extends Controller
         $token = $user->createToken('token', ['user'])->plainTextToken;
 
         $response = [
+            'code' => 201,
             'message' => 'User Berhasil Dibuat',
             'user' => $user,
             'token' => $token,
@@ -60,6 +61,7 @@ class AuthController extends Controller
         $token = $user->createToken('token', ['user'])->plainTextToken;
 
         $response = [
+            'code' => 200,
             'message' => 'Login User Berhasil',
             'user' => $user,
             'token' => $token,
