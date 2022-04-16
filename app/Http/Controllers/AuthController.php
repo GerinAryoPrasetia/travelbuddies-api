@@ -20,6 +20,7 @@ class AuthController extends Controller
             'password' => 'required',
             'age' => 'required',
             'location' => 'required',
+
         ]);
 
         $user = User::create([
@@ -28,6 +29,7 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password']),
             'age' => $fields['age'],
             'location' => $fields['location'],
+            'role' => 'user',
         ]);
 
         $token = $user->createToken('token', ['user'])->plainTextToken;
@@ -63,10 +65,37 @@ class AuthController extends Controller
         $response = [
             'code' => 200,
             'message' => 'Login User Berhasil',
-            'user' => $user,
+            'data' => $user,
             'token' => $token,
         ];
         return response($response, 200);
+    }
+
+    public function registerAdmin(Request $request)
+    {
+        $fields = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users, email',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+
+        $user = User::create([
+            'name' => $fields['name'],
+            'email' => $fields['email'],
+            'password' => bcrypt($fields['password']),
+            'role' => 'admin',
+        ]);
+
+        $token = $user->createToken('token', ['admin'])->plainTextToken;
+
+        $response = [
+            'code' => 201,
+            'message' => 'Admin Berhasil Dibuat',
+            'user' => $user,
+            'token' => $token,
+        ];
+        return response($response, 201);
     }
 
     public function loginAdmin(Request $request)
@@ -89,8 +118,9 @@ class AuthController extends Controller
         $token = $admin->createToken('token', ['admin'])->plainTextToken;
 
         $response = [
+            'code' => 200,
             'message' => 'Login Admin Berhasil',
-            'admin' => $admin,
+            'data' => $admin,
             'token' => $token,
         ];
         return response($response, 200);

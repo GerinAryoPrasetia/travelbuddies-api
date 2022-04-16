@@ -20,7 +20,10 @@ class Admin extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'role',
+        'name',
     ];
+    protected $table = 'admins';
     /**
      * The attributes that should be hidden for serialization.
      *
