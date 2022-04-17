@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('destination_name');
             $table->date('schedule');
             $table->string('people');
             $table->string('items');
             $table->string('transportation');
             $table->timestamps();
-            $table->foreign('user_id')
-                ->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('user_id')
+            //     ->references('id')->on('users')->onDelete('cascade');
         });
     }
 

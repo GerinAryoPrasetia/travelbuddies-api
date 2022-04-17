@@ -51,8 +51,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Destination::class);
     }
 
-    public function plans()
-    {
-        return $this->hasOne(Plan::class);
-    }
+    // public function plans()
+    // {
+    //     return $this->hasOne(Plan::class);
+    // }
 }

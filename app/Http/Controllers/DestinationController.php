@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DestinationController extends Controller
 {
@@ -26,8 +27,8 @@ class DestinationController extends Controller
         ]);
 
         $image = $request->file('image');
-        $image->storeAs('public/images', $image->hashName());
-
+        // $image->storeAs('public/images', $image->hashName());
+        Storage::disk('public')->put('images', $image);
         $destination = Destination::create([
             'destination_name' => $fields['destination_name'],
             'description' => $fields['description'],

@@ -31,5 +31,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin'),
             'role' => 'admin'
         ]);
+
+        DB::table('plans')->insert([
+            'user_id' => '1',
+            'destination_name' => 'Braga',
+            'schedule' => '20 April 2022',
+            'people' => 'Gerin, Bowo, Adik, Ibra',
+            'items' => 'Tas, Buku, Laptop',
+            'transportation' => 'Mobil',
+        ]);
     }
 }

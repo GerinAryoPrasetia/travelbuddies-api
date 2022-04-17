@@ -16,7 +16,7 @@ class PlanController extends Controller
 
     public function showUserPlan($id)
     {
-        $plan = User::find($id)->plan;
+        $plan = Plan::where('user_id', $id)->first();
         return response($plan, 200);
     }
 

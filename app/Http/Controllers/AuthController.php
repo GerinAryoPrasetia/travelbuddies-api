@@ -37,7 +37,7 @@ class AuthController extends Controller
         $response = [
             'code' => 201,
             'message' => 'User Berhasil Dibuat',
-            'user' => $user,
+            'data' => $user,
             'token' => $token,
         ];
         return response($response, 201);
@@ -92,7 +92,7 @@ class AuthController extends Controller
         $response = [
             'code' => 201,
             'message' => 'Admin Berhasil Dibuat',
-            'user' => $user,
+            'data' => $user,
             'token' => $token,
         ];
         return response($response, 201);
