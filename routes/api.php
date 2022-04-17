@@ -39,9 +39,16 @@ Route::get('/destination/{name}', [DestinationController::class, 'search']);
 
 //Protected Route
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    //destination
     Route::post('/destination/{id}', [DestinationController::class, 'update']);
+    Route::delete('/destination/{id}', [DestinationController::class, 'delete']);
     Route::post('/destination', [DestinationController::class, 'store']);
+
+    //user details
     Route::post('/user/{id}', [AuthController::class, 'show']);
     Route::get('/user', [UserController::class, 'index']);
+
+    //plan
     Route::get('/plan/{id}', [PlanController::class, 'showUserPlan']);
+    Route::post('/plan', [PlanController::class, 'store']);
 });

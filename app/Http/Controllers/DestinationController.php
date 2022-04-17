@@ -72,8 +72,8 @@ class DestinationController extends Controller
         return Destination::where('destination_name', 'like', '%' . $name . '%')->get();
     }
 
-    // public function destinationList($userid)
-    // {
-    //     $destination_list = Destination::where('userid')
-    // }
+    public function delete($id)
+    {
+        return Destination::destroy($id);
+    }
 }

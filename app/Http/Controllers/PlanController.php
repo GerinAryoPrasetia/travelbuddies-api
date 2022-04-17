@@ -31,7 +31,7 @@ class PlanController extends Controller
             'transportation' => 'required',
         ]);
 
-        $plan = Plan::crete([
+        $plan = Plan::create([
             'user_id' => $fields['user_id'],
             'destination_name' => $fields['destination_name'],
             'schedule' => $fields['schedule'],
@@ -47,5 +47,20 @@ class PlanController extends Controller
         ];
 
         return response($response, 201);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $plan = Plan::find($id);
+        if ($plan == null) {
+            return response('Plan Tidak Ditemukan', 400);
+        } else {
+            $plan->update($request->all());
+            $response = [
+                'message' => 'Plan Berhasil Diubah',
+                'data' => $plan,
+            ];
+            return response($response, 200);
+        }
     }
 }
