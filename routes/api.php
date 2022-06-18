@@ -43,12 +43,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/destination/{id}', [DestinationController::class, 'update']);
     Route::delete('/destination/{id}', [DestinationController::class, 'delete']);
     Route::post('/destination', [DestinationController::class, 'store']);
+    Route::put('/destination/{id}', [DestinationController::class, 'update']);
 
     //user details
-    Route::post('/user/{id}', [AuthController::class, 'show']);
+    Route::get('/user/{id}', [UserController::class, 'show']);
     Route::get('/user', [UserController::class, 'index']);
 
     //plan
     Route::get('/plan/{id}', [PlanController::class, 'showUserPlan']);
     Route::post('/plan', [PlanController::class, 'store']);
 });
+
+Route::post('/user/{user}/plan', [UserController::class, 'addPlan']);
+Route::get('/user/{user}/plan', [UserController::class, 'showPlan']);

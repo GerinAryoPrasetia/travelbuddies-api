@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Destination::class);
     }
 
+    public function plans()
+    {
+        return $this->hasMany('App\Models\Plan');
+    }
+
     // public function plans()
     // {
     //     return $this->hasOne(Plan::class);

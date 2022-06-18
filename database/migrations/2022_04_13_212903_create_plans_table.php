@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('plans', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->string('destination_name');
             $table->date('schedule');
@@ -22,8 +22,10 @@ return new class extends Migration
             $table->string('items');
             $table->string('transportation');
             $table->timestamps();
-            // $table->foreign('user_id')
-            //     ->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

@@ -23,12 +23,12 @@ class DestinationController extends Controller
             'address' => 'required',
             'price' => 'required',
             'facilities' => 'required',
-            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required',
         ]);
 
-        $image = $request->file('image');
-        // $image->storeAs('public/images', $image->hashName());
-        Storage::disk('public')->put('images', $image);
+        // $image = $request->file('image');
+        // // $image->storeAs('public/images', $image->hashName());
+        // Storage::disk('public')->put('images', $image);
         $destination = Destination::create([
             'destination_name' => $fields['destination_name'],
             'description' => $fields['description'],
@@ -36,7 +36,7 @@ class DestinationController extends Controller
             'address' => $fields['address'],
             'price' => $fields['price'],
             'facilities' => $fields['facilities'],
-            'image' => $image->hashName(),
+            'image' => $fields['image']
         ]);
 
         $response = [

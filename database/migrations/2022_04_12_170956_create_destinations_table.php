@@ -23,6 +23,7 @@ return new class extends Migration
             $table->json('facilities');
             $table->text('image');
             $table->timestamps();
+            // $table->foreign('user_id')->references('id');
         });
     }
 

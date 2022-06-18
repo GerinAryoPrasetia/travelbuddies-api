@@ -9,7 +9,6 @@ class Plan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
         'destination_name',
         'schedule',
         'people',
@@ -18,4 +17,9 @@ class Plan extends Model
     ];
 
     protected $table = 'plans';
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\Plan');
+    }
 }
