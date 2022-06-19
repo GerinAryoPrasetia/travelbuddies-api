@@ -31,8 +31,8 @@ class AuthController extends Controller
             'location' => $fields['location'],
             'role' => 'user',
         ]);
-
         $token = $user->createToken('token', ['user'])->plainTextToken;
+
 
         $response = [
             'code' => 201,

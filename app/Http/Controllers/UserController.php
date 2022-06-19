@@ -84,14 +84,11 @@ class UserController extends Controller
     {
         $plans = $user->plans;
         if (count($plans) > 0) {
-            return response()->json([
-                'message' => 'Success',
-                'data' => $plans,
-            ], 200);
+            return response()->json($plans, 200);
         } else {
             return response()->json([
                 'message' => 'Data Not Found',
-                'data' => null,
+                'plan' => null,
             ], 200);
         }
     }
