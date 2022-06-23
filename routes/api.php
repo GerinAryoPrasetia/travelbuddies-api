@@ -48,10 +48,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //user details
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::get('/user', [UserController::class, 'index']);
-
+    Route::put('/user/{id}', [UserController::class, 'update']);
     //plan
     Route::get('/plan/{id}', [PlanController::class, 'showUserPlan']);
     Route::post('/plan', [PlanController::class, 'store']);
+
+    Route::delete('/plan/{id}', [PlanController::class, 'delete']);
 });
 
 Route::post('/user/{user}/plan', [UserController::class, 'addPlan']);

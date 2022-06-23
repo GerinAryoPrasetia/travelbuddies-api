@@ -92,4 +92,35 @@ class UserController extends Controller
             ], 200);
         }
     }
+
+    public function update(Request $request, $id)
+    {
+
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'age' => 'required',
+            'location' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'age' => $request->age,
+            'location' => $request->location,
+        ]);
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'data berhasil diubah'
+            ],
+            200
+        );
+    }
 }

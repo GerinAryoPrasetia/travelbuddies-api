@@ -63,4 +63,9 @@ class PlanController extends Controller
             return response($response, 200);
         }
     }
+
+    public function delete($id)
+    {
+        return Plan::destroy($id);
+    }
 }
